@@ -1,0 +1,112 @@
+body{
+  font-family: "Inter", sans-serif;
+}
+.bg-purple {
+  background-color: #7a26fd;
+}
+
+.w-24 {
+  width: 6rem;
+  height: 6rem;
+}
+
+.w-14{
+     width: 56px;
+  height: 56px;
+}
+.w-10 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.w-11 {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.w-7 {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.color-purple {
+  color: #7a26fd;
+}
+
+.form-control {
+  padding: 0.75rem 1rem;
+  background-color: rgb(249, 249, 249);
+  border-radius: 12px;
+}
+
+.form-control:focus {
+  border-color: rgb(122, 38, 253);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(122, 38, 253, 0.25);
+}
+
+main {
+  padding: 7rem 0rem 1rem;
+  min-height: 100vh;
+  background-color: #f6f8fc;
+}
+
+.border-gray {
+  border: 1px solid #f3f4f6;
+}
+.contact-btns button i {
+  color: gray;
+}
+.contact-btns button {
+  transition: 0.3s all;
+}
+.contact-btns button:hover {
+  background-color: rgb(233, 233, 233);
+}
+.contact-btns button.starBtn:hover i {
+  color: #f59e0b;
+}
+
+.contact-btns button.heartBtn:hover i {
+  color: red;
+}
+.contact-btns button.penBtn:hover i {
+  color: blue;
+}
+.contact-btns button.trashBtn:hover i {
+  color: red;
+}
+.contact-card{
+    transition: 0.3s all;
+} 
+.contact-card:hover{
+    transform: translatey(-5px);
+} 
+
+
+/* shared badge */
+.status-badge {
+  width: 20px;
+  height: 20px;
+
+}
+
+.status-badge i {
+  font-size: 8px;
+}
+
+/* positions */
+.status-badge.emergency {
+  bottom: -3px;
+  right: -3px;
+}
+
+.status-badge.favorite {
+  top: -3px;
+  right: -3px;
+}
+
+#favBox,#emerBox{
+  max-height: 280px;
+  overflow-y: auto;
+}

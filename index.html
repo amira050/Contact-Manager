@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContactHub - Smart Contact Manager</title>
+    <link rel="icon" href="https://contacthub-route.vercel.app/favicon.png">
+    <!-- font -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<!-- style -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/madia.css">
+
+
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <nav class="navbar navbar-expand bg-white position-fixed start-0 end-0">
+            <div class="container">
+                <div class="logo d-flex justify-content-center align-items-center gap-3">
+                    <div
+                        class="icon-box d-flex justify-content-center align-items-center w-10 bg-purple rounded-3 shadow-sm ">
+                        <i class="fa-solid fa-address-book text-white "></i>
+                    </div>
+                    <div>
+                        <h1 class="m-0 fs-3 fw-bolder">Contact<span class="color-purple">Hub</span></h1>
+                        <p class="text-muted small fw-medium m-0">Smart Contact Manager</p>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto gap-3">
+                        <li class="nav-item">
+                            <!-- Scrollable modal -->
+                            <button type="button" class="border-0 px-3 py-2 rounded-4 text-white bg-purple fw-semibold"
+                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <i class="fa-solid fa-plus"></i>
+                                Add Contact
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button"
+                                class="btn btn-light w-10 d-md-flex align-items-center justify-content-center d-none">
+                                <i class="fa-solid fa-bell text-body-tertiary"></i>
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button"
+                                class="btn btn-light w-10 d-md-flex align-items-center justify-content-center d-none">
+                                <i class="fa-solid fa-gear text-body-tertiary"></i>
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <div class="w-10 ">
+                                <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-4.jpg"
+                                    alt="Profile" class="w-100 h-100 object-fit-cover rounded-3" />
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- main content -->
+    <main>
+        <!-- Stats Cards -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="rounded-4 d-flex align-items-center  gap-3 p-4 shadow-sm bg-white border-gray">
+                        <div class="d-flex align-items-center justify-content-center rounded-3 bg-primary w-11 shadow">
+                            <i class="fa-solid fa-users text-white"></i>
+                        </div>
+                        <div>
+                            <p class="text-muted small m-0 fw-semibold text-uppercase">TOTAL</p>
+                            <p id="totalNum" class="fw-bolder fs-5 m-0">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="rounded-4 d-flex align-items-center  gap-3 p-4 shadow-sm bg-white border-gray">
+                        <div class="d-flex align-items-center justify-content-center rounded-3 bg-warning w-11 shadow">
+                            <i class="fa-solid fa-star text-white"></i>
+                        </div>
+                        <div>
+                            <p class="text-muted small m-0 fw-semibold text-uppercase">Favorites</p>
+                            <p id="favoritesNum" class="fw-bolder fs-5 m-0">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="rounded-4 d-flex align-items-center  gap-3 p-4 shadow-sm bg-white border-gray">
+                        <div class="d-flex align-items-center justify-content-center rounded-3 bg-danger shadow w-11">
+                            <i class="fa-solid fa-heart-pulse text-white"></i>
+                        </div>
+                        <div>
+                            <p class="text-muted small m-0 fw-semibold text-uppercase">Emergency</p>
+                            <p id="emergencyNum" class="fw-bolder fs-5 m-0">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- container form js and search input -->
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <div>
+                        <!-- Sesrch input -->
+                        <div class="mb-4">
+                            <h2 class="m-0 fw-bolder">All Contacts</h2>
+                            <p class="text-muted fw-medium small">Manage and organize your 7 contacts</p>
+                        </div>
+                        <div class="position-relative">
+                            <div
+                                class="position-absolute top-0 bottom-0 start-0 ps-3 d-flex align-items-center justify-content-center ">
+                                <i class="fa-solid fa-magnifying-glass text-light-emphasis"></i>
+                            </div>
+                            <input id="searchInput" type="text" placeholder="Search by name, phone, or email..."
+                                class="form-control ps-5 bg-white">
+                        </div>
+
+                        <!-- empty contact -->
+                        <div class="text-center py-5 mx-auto d-block" id="emptyCont">
+                            <div
+                                class="rounded-3 bg-secondary bg-opacity-10 w-24 mb-3 mx-auto d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-address-book text-secondary fs-4"></i>
+                            </div>
+
+                            <p class="text-secondary fw-medium mb-1">
+                                No contacts found
+                            </p>
+
+                            <p class="text-muted small">
+                                Click "Add Contact" to get started
+                            </p>
+                        </div>
+
+                        <!-- container of contact form js -->
+                        <div class="container">
+                            <div class="row my-4 row-gap-3 " id="contactRow">
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div>
+                        <div class="rounded-4 overflow-hidden mb-4">
+                            <div class="d-flex align-items-center gap-3 bg-warning-subtle bg-opacity-10 p-3 ">
+                                <div class="w-10 d-flex justify-content-center align-items-center rounded-3 bg-warning">
+                                    <i class="fa-solid fa-star text-white "></i>
+                                </div>
+                                <div>
+                                    <h2 class="fw-bold m-0 fs-6 ">Favorites</h2>
+                                    <p class="text-muted m-0 small fw-medium">Quick access to starred contacts</p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-white">
+                                <div class="row g-2" id="favBox"></div>
+                            </div>
+                        </div>
+                        <div class="rounded-4 overflow-hidden">
+                            <div class="d-flex align-items-center gap-3 bg-danger-subtle bg-opacity-10 p-3 ">
+                                <div class="w-10 d-flex justify-content-center align-items-center rounded-3 bg-danger">
+                                    <i class="fa-solid fa-heart-pulse text-white "></i>
+                                </div>
+                                <div>
+                                    <h2 class="fw-bold m-0 fs-6 ">Emergency</h2>
+                                    <p class="text-muted m-0 small fw-medium">Important contacts for urgent calls</p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-white">
+                                <div class="row g-2" id="emerBox">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Contact</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex align-items-center justify-content-center flex-column gap-3">
+                            <div>
+                                <div id="imagePreview"
+                                    class="icon-box rounded-circle d-flex justify-content-center align-items-center bg-primary bg-gradient shadow-sm w-24">
+                                    <i class="fa-solid fa-user text-white fs-2"></i>
+                                </div>
+
+                            </div>
+                            <input type="file" id="imageUpload" accept="image/*" class="d-none">
+                            <button
+                                class="border-0 px-3 py-2 rounded-3 bg-secondary-subtle text-secondary-emphasis fw-semibold"
+                                id="btnImageUpload">
+                                <i class="fa-solid fa-camera"></i>
+                                <span>Change Photo</span>
+                            </button>
+                        </div>
+                        <form class="p-3">
+                            <div class="mb-4">
+                                <label for="fullName" class="fw-semibold small mb-2">Full Name
+                                    *</label>
+                                <br>
+                                <input type="text" id="fullName" required placeholder="Enter full name"
+                                    class="form-control">
+                                <div class="m-0 d-none text-danger">Name should contain only letters
+                                    and
+                                    spaces (2-50 characters)</div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="phoneNumber" class="fw-semibold small mb-2">Phone Number
+                                    *</label>
+                                <br>
+                                <input type="text" id="phoneNumber" required placeholder="e.g., 01012345678"
+                                    class="form-control">
+                                <div class="m-0 d-none text-danger">Please enter a valid Egyptian
+                                    phone
+                                    number</div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="fw-semibold small mb-2">Email
+                                    Address</label>
+                                <br>
+                                <input type="email" id="email" required placeholder="name@example.com"
+                                    class="form-control">
+                                <div class="m-0 d-none text-danger">NPlease enter a valid email
+                                    address</div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="address" class="fw-semibold small mb-2">Address</label>
+                                <br>
+                                <input type="text" id="address" required placeholder="Enter address"
+                                    class="form-control">
+                            </div>
+                            <div class="mb-4">
+                                <label for="group" class="fw-semibold small mb-2">Group</label>
+                                <select id="group" class="form-control">
+                                    <option value="">Select a group</option>
+                                    <option value="family">Family</option>
+                                    <option value="friends">Friends</option>
+                                    <option value="work">Work</option>
+                                    <option value="school">School</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="notes" class="fw-semibold small mb-2">Notes</label><br>
+                                <textarea id="notes" rows="2" placeholder="Add notes about this contact"
+                                    class="form-control"></textarea>
+                            </div>
+                            <div class="d-flex flex-wrap gap-4 mb-4 ">
+                                <label class="d-inline-flex align-items-center gap-2 ">
+                                    <input type="checkbox" id="favorite">
+                                    <span class="small fw-semibold">
+                                        <i class="fa-solid fa-star  me-1 text-warning"></i>Favorite
+                                    </span>
+                                </label>
+                                <label class="d-inline-flex align-items-center gap-2">
+                                    <input type="checkbox" id="emergency">
+                                    <span class="small fw-semibold">
+                                        <i class="fa-solid fa-heart-pulse  me-1 text-danger"></i>Emergency
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="row-cols-2 d-flex gap-3">
+                                <button type="button" class="btn btn-light " data-bs-dismiss="modal"
+                                    id="btnCancel">Cancel</button>
+                                <button type="button" data-bs-dismiss="modal"
+                                    class="border-0 rounded-2 bg-purple d-flex  align-items-center justify-content-center text-white"
+                                    id="btnSave">
+                                    <i class="fa-solid fa-check me-2"></i>
+                                    Save Contact
+                                </button>
+                                <button type="button" data-bs-dismiss="modal"
+                                    class="border-0 rounded-2 bg-purple d-none  align-items-center justify-content-center text-white"
+                                    id="btnUpdate" onclick="updateData()">
+                                    <i class="fa-solid fa-check me-2"></i>
+                                    Update Contact
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <script src="js/main.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
