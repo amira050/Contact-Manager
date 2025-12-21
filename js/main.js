@@ -85,6 +85,13 @@ function addContact() {
     //clear
     clear();
   }
+  Swal.fire({
+    position: "center",
+    icon: "success",
+    title: "Added successfully",
+    showConfirmButton: false,
+    timer: 1500,
+  });
 }
 
 // clear fumction
@@ -275,15 +282,32 @@ function display(list = contactList) {
 
 // delete function
 function deleteContact(index) {
-  contactList.splice(index, 1);
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      contactList.splice(index, 1);
 
-  localStorage.setItem("contactStorage", JSON.stringify(contactList));
+      localStorage.setItem("contactStorage", JSON.stringify(contactList));
 
-  //update total number after delete
-  updateTotal();
-  //
-  updateStats();
-  display();
+      //update total number after delete
+      updateTotal();
+      //
+      updateStats();
+      display();
+      Swal.fire({
+        title: "Deleted!",
+        text: "Your contact has been deleted.",
+        icon: "success",
+      });
+    }
+  });
 }
 
 //update total number
@@ -340,6 +364,13 @@ function updateData() {
 
   btnSave.classList.replace("d-none", "d-flex");
   btnUpdate.classList.replace("d-flex", "d-none");
+  Swal.fire({
+    position: "center",
+    icon: "success",
+    title: "Updatting successfully",
+    showConfirmButton: false,
+    timer: 1500,
+  });
 }
 
 // validation
@@ -471,3 +502,4 @@ function toggleEmergency(index) {
   display();
   updateStats();
 }
+
